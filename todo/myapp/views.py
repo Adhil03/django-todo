@@ -1,8 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .models import TodoItem
 
-# Create your views here.
-
 
 # Create your views here.
 def home(request):
