@@ -1,13 +1,20 @@
 {% extends "base.html" %}  {% block content %}
 <h1>Todo List</h1>
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="new_todo" placeholder="Add New todo item" required />
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
 <ul>
-  {% for todo in items %}
+  {% for todo in todos %}
     <li>
       {% if todo.completed %}
-        <s>{{ todo.title }}</s>
+        ✅ {{ todo.title }}
       {% else %}
-        {{ todo.title }}
+        {{todo.title }}
       {% endif %}
+      <a href="/delete_todo/{{todo.id}}">Delete</a>
+      <a href="/toggle_todo/{{todo.id}}">Update</a>
     </li>
   {% empty %}
     <li>No todo items yet.</li>
