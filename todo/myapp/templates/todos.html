@@ -17,13 +17,13 @@
     <li>
       <span class="category-badge {{ todo.category }}">{{ todo.category|title }}</span>
       {% if todo.completed %}
-        ✅ {{ todo.title }}
+        <s>{{ todo.title }}</s>
       {% else %}
       {{todo.title }} 
       {% endif %}
-      <a href="/delete_todo/{{todo.id}}">Delete</a>
-      <a href="/toggle_todo/{{todo.id}}">Toggle</a>
-      <a href="/edit_todo/{{todo.id}}">Edit</a>
+      <a href="/delete_todo/{{todo.id}}" onclick="return confirm('Are you sure you want to delete - {{ todo.title }}?');">❌</a>
+      <a href="/toggle_todo/{{todo.id}}">✅</a>
+      <a href="/edit_todo/{{todo.id}}">✏️</a>
     </li>
   {% empty %}
     <li>No todo items yet.</li>
