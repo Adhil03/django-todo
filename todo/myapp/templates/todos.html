@@ -4,10 +4,10 @@
   {% csrf_token %}
   <input type="text" name="new_todo" placeholder="Add New todo item" required />
   <select name="category">
-    <option value="general">General</option>
-    <option value="personal">Personal</option>
-    <option value="work">Work</option>
-    <option value="urgent">Urgent</option>
+      <option value="general">General</option>
+      <option value="personal">Personal</option>
+      <option value="work">Work</option>
+      <option value="urgent">Urgent</option>
     <option value="other">Other</option>
   </select>
   <button type="submit" class="btn btn-primary">Add</button>
@@ -15,10 +15,10 @@
 <ul>
   {% for todo in todos %}
     <li>
-      <span>{{ todo.category|title }}</span>
-      {% if todo.completed %} 
-        ✅ {{ todo.title }} 
-      {% else %} 
+      <span class="category-badge {{ todo.category }}">{{ todo.category|title }}</span>
+      {% if todo.completed %}
+        ✅ {{ todo.title }}
+      {% else %}
       {{todo.title }} 
       {% endif %}
       <a href="/delete_todo/{{todo.id}}">Delete</a>
@@ -28,4 +28,23 @@
     <li>No todo items yet.</li>
   {% endfor %}
 </ul>
+
+<style>
+    /* Optional CSS to make categories look distinct */
+    .category-badge {
+        font-size: 0.8em;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background-color: #eee;
+        margin-right: 8px;
+        color: #333;
+    }
+    /* Dynamic coloring based on category class */
+    .urgent { background-color: #ffcccc; color: #cc0000; }
+    .general { background-color: #cce5ff; color: #004085; }
+    .personal { background-color: #d4edda; color: #155724; }
+    .work { background-color: #fff3cd; color: #856404; }
+    .other { background-color: #f4f4f4; color: #6c757d; }
+</style>
+
 {% endblock %}
