@@ -12,6 +12,7 @@ def todos(request):
         new_todo = request.POST.get("new_todo")
         category = request.POST.get("category")
         TodoItem.objects.create(title=new_todo, category=category)
+        return redirect(request.path)
     items = TodoItem.objects.all()
     return render(request, "todos.html", {"todos": items})
 
