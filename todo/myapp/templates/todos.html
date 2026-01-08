@@ -1,6 +1,6 @@
 {% extends "base.html" %}  {% block content %}
 <h1>Todo List</h1>
-<form method="post" style="display: flex; gap: 10px; margin-bottom: 20px;">
+<form method="post" class="add-form">
   {% csrf_token %}
   <input type="text" name="new_todo" placeholder="Add New todo item" required />
   <select name="category">
@@ -8,22 +8,29 @@
       <option value="personal">Personal</option>
       <option value="work">Work</option>
       <option value="urgent">Urgent</option>
-    <option value="other">Other</option>
+      <option value="other">Other</option>
   </select>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
-<ul>
+
+<ul class="todo-list">
   {% for todo in todos %}
-    <li>
-      <span class="category-badge {{ todo.category }}">{{ todo.category|title }}</span>
-      {% if todo.completed %}
-        <s>{{ todo.title }}</s>
-      {% else %}
-      {{todo.title }} 
-      {% endif %}
-      <a href="/delete_todo/{{todo.id}}" onclick="return confirm('Are you sure you want to delete - {{ todo.title }}?');">❌</a>
-      <a href="/toggle_todo/{{todo.id}}">✅</a>
-      <a href="/edit_todo/{{todo.id}}">✏️</a>
+    <li class="todo-item">
+      <div class="left">
+        <span class="category-badge {{ todo.category }}">{{ todo.category|title }}</span>
+        <span class="todo-title">
+          {% if todo.completed %}
+            <s>{{ todo.title }}</s>
+          {% else %}
+            {{ todo.title }}
+          {% endif %}
+        </span>
+      </div>
+      <div class="actions" aria-label="actions for {{ todo.title }}">
+        <a class="btn-action delete" href="/delete_todo/{{todo.id}}" onclick="return confirm('Are you sure you want to delete - {{ todo.title }}?');" title="Delete">❌</a>
+        <a class="btn-action toggle" href="/toggle_todo/{{todo.id}}" title="Toggle completed">✅</a>
+        <a class="btn-action edit" href="/edit_todo/{{todo.id}}" title="Edit">✏️</a>
+      </div>
     </li>
   {% empty %}
     <li>No todo items yet.</li>
@@ -31,21 +38,34 @@
 </ul>
 
 <style>
-    /* Optional CSS to make categories look distinct */
-    .category-badge {
-        font-size: 0.8em;
-        padding: 2px 6px;
-        border-radius: 4px;
-        background-color: #eee;
-        margin-right: 8px;
-        color: #333;
-    }
-    /* Dynamic coloring based on category class */
-    .urgent { background-color: #ffcccc; color: #cc0000; }
-    .general { background-color: #cce5ff; color: #004085; }
-    .personal { background-color: #d4edda; color: #155724; }
-    .work { background-color: #fff3cd; color: #856404; }
-    .other { background-color: #f4f4f4; color: #6c757d; }
+  /* Form layout */
+  .add-form { display:flex; gap:10px; margin-bottom:20px; align-items:center; flex-wrap:wrap; }
+  .add-form input[type="text"] { flex:1; min-width:200px; padding:6px 8px; }
+  .add-form select { padding:6px 8px; }
+
+  /* List and item layout */
+  .todo-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .todo-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 12px; border:1px solid #eee; border-radius:6px; background:#fff; }
+  .left { display:flex; align-items:center; gap:12px; flex:1; min-width:0; }
+  .todo-title { flex:1; min-width:0; word-break:break-word; color:#222; }
+
+  /* Category badge */
+  .category-badge { font-size:0.8em; padding:4px 8px; border-radius:4px; background-color:#eee; color:#333; white-space:nowrap; }
+
+  /* Action buttons */
+  .actions { display:flex; gap:8px; align-items:center; margin-left:12px; }
+  .btn-action { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:6px; text-decoration:none; border:1px solid transparent; background:transparent; cursor:pointer; }
+  .btn-action:hover { background:#f5f5f5; }
+  .btn-action.delete { color:#c82333; }
+  .btn-action.toggle { color:#28a745; }
+  .btn-action.edit { color:#007bff; }
+
+  /* Category colors */
+  .urgent { background-color:#ffcccc; color:#cc0000; }
+  .general { background-color:#cce5ff; color:#004085; }
+  .personal { background-color:#d4edda; color:#155724; }
+  .work { background-color:#fff3cd; color:#856404; }
+  .other { background-color:#f4f4f4; color:#6c757d; }
 </style>
 
 {% endblock %}
