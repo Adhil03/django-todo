@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit Todo Item</h1>
+<form method="post" style="display: flex; flex-direction: column; gap: 10px; max-width: 400px;">
+  {% csrf_token %}
+  <input type="text" name="updated_title" value="{{ todo.title }}" required />
+  <select name="category">
+      <option value="general" {% if todo.category == "general" %}selected{% endif %}>General</option>
+      <option value="personal" {% if todo.category == "personal" %}selected{% endif %}>Personal</option>
+      <option value="work" {% if todo.category == "work" %}selected{% endif %}>Work</option>
+      <option value="urgent" {% if todo.category == "urgent" %}selected{% endif %}>Urgent</option>
+      <option value="other" {% if todo.category == "other" %}selected{% endif %}>Other</option>
+  </select>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}

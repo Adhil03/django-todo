@@ -8,4 +8,5 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("toggle_todo/<int:todo_id>/", views.toggle_todo, name="toggle_todo"),
     path("delete_todo/<int:todo_id>/", views.delete_todo, name="delete_todo"),
+    path("edit_todo/<int:todo_id>/", views.edit_todo, name="edit_todo"),
 ]

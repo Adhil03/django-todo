@@ -59,3 +59,15 @@ def contact(request):
         },
     ]
     return render(request, "contact.html", {"social_accounts": social_accounts})
+
+
+def edit_todo(request, todo_id):
+    todo = TodoItem.objects.get(id=todo_id)
+    if request.method == "POST":
+        new_title = request.POST.get("updated_title")
+        new_category = request.POST.get("category")
+        todo.title = new_title
+        todo.category = new_category
+        todo.save()
+        return redirect("/todos")
+    return render(request, "edit_todo.html", {"todo": todo})
