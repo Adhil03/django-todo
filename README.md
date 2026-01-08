@@ -52,3 +52,18 @@ A simple **Django-based Todo application** with category-based task organization
 
 This project is built purely for learning and practice.
 It is intended to strengthen understanding of Django fundamentals and is not production-ready.
+
+## 📸 Screenshots
+
+**Main Pages**
+![Home](images/1_home.png)
+![Todo List](images/2_todo-list.png)
+
+**Todo Interactions**
+![Delete](images/3_delete-confirmation.png)
+![Completed](images/4_completed-todo.png)
+![Edited](images/6_edited-todo.png)
+
+**Static Pages**
+![About](images/7_about.png)
+![Contact](images/8_contact.png)
