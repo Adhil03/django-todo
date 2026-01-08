@@ -10,7 +10,8 @@ def home(request):
 def todos(request):
     if request.method == "POST":
         new_todo = request.POST.get("new_todo")
-        TodoItem.objects.create(title=new_todo)
+        category = request.POST.get("category")
+        TodoItem.objects.create(title=new_todo, category=category)
     items = TodoItem.objects.all()
     return render(request, "todos.html", {"todos": items})
 

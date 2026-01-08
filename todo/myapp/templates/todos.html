@@ -4,11 +4,11 @@
   {% csrf_token %}
   <input type="text" name="new_todo" placeholder="Add New todo item" required />
   <select name="category">
-      <option value="other">Other</option>
-      <option value="general">General</option>
-      <option value="personal">Personal</option>
-      <option value="work">Work</option>
-      <option value="urgent">Urgent</option>
+    <option value="general">General</option>
+    <option value="personal">Personal</option>
+    <option value="work">Work</option>
+    <option value="urgent">Urgent</option>
+    <option value="other">Other</option>
   </select>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
@@ -22,7 +22,7 @@
       {{todo.title }} 
       {% endif %}
       <a href="/delete_todo/{{todo.id}}">Delete</a>
-      <a href="/toggle_todo/{{todo.id}}">Update</a>
+      <a href="/toggle_todo/{{todo.id}}">Toggle</a>
     </li>
   {% empty %}
     <li>No todo items yet.</li>
