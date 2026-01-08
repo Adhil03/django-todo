@@ -1,17 +1,25 @@
 {% extends "base.html" %}  {% block content %}
 <h1>Todo List</h1>
-<form method="post">
+<form method="post" style="display: flex; gap: 10px; margin-bottom: 20px;">
   {% csrf_token %}
   <input type="text" name="new_todo" placeholder="Add New todo item" required />
+  <select name="category">
+      <option value="other">Other</option>
+      <option value="general">General</option>
+      <option value="personal">Personal</option>
+      <option value="work">Work</option>
+      <option value="urgent">Urgent</option>
+  </select>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
 <ul>
   {% for todo in todos %}
     <li>
-      {% if todo.completed %}
-        ✅ {{ todo.title }}
-      {% else %}
-        {{todo.title }}
+      <span>{{ todo.category|title }}</span>
+      {% if todo.completed %} 
+        ✅ {{ todo.title }} 
+      {% else %} 
+      {{todo.title }} 
       {% endif %}
       <a href="/delete_todo/{{todo.id}}">Delete</a>
       <a href="/toggle_todo/{{todo.id}}">Update</a>
