@@ -55,15 +55,57 @@ It is intended to strengthen understanding of Django fundamentals and is not pro
 
 ## 📸 Screenshots
 
-**Main Pages**
-![Home](images/1_home.png)
+### Home Page
+> Landing page with navigation links to Home, Todo App, About, and Contact.
+
+![Home Page](images/1_home.png)
+
+---
+
+### Todo List with Categories
+> Main todo page showing tasks grouped with category badges and action icons.
+
 ![Todo List](images/2_todo-list.png)
 
-**Todo Interactions**
-![Delete](images/3_delete-confirmation.png)
-![Completed](images/4_completed-todo.png)
-![Edited](images/6_edited-todo.png)
+---
 
-**Static Pages**
-![About](images/7_about.png)
-![Contact](images/8_contact.png)
+### Delete Confirmation Dialog
+> Browser confirmation prompt shown before deleting a todo item.
+
+![Delete Confirmation](images/3_delete-confirmation.png)
+
+---
+
+### Completed Todo Item
+> Completed todos are visually marked with a strike-through style.
+
+![Completed Todo](images/4_completed-todo.png)
+
+---
+
+### Edit Todo Page
+> Page used to edit an existing todo item.
+
+![Edit Todo Page](images/5_edit-page.png)
+
+---
+
+### Edited Todo Item
+> Updated todo title reflected after editing.
+
+![Edited Todo](images/6_edited-todo.png)
+
+---
+
+### About Page
+> Static About page describing the application.
+
+![About Page](images/7_about.png)
+
+---
+
+### Contact Page
+> Static Contact page with basic contact information.
+
+![Contact Page](images/8_contact.png)
+
